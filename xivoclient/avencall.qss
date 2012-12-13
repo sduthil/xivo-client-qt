@@ -16,9 +16,12 @@ QFrame#identitybck { color : white;
                     margin : 0px; padding : 0px}
 QFrame#identitybck QLabel {color : white}
 
-
+QTabWidget::tab-bar {left : 50px}
 QTabBar::tab {background: #808080;
                 /*font: bold;*/ /* Qt Bug : text is truncated. See QTBUG-5052 and QTBUG-8209 */
                 color: white ; padding: 3px;
                 border: 2px solid white; border-top-left-radius: 10px; border-top-right-radius: 10px}
 QTabBar::tab:selected, QTabBar::tab:hover {background: white; color : #F37021}
+
+/*QTabWidget QWidget {background: white}*/
+QTabWidget > * {border: 1px solid #808080 ; border-radius: 10px}
