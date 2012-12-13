@@ -75,9 +75,8 @@ class IdentityDisplay : public XLet
         void setupIcons();
 
         QGridLayout * m_glayout;
+        QFrame * m_identitybck;
         QLabel *m_icon_user;
-        QFrame *m_qvline1;
-        QFrame *m_qvline2;
         QLabel *m_user;
         QLabel *m_phonenum;
         QComboBox * m_presencevalue;

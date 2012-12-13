@@ -62,19 +62,32 @@ XLet* XLetIdentityPlugin::newXLetInstance(QWidget *parent)
 IdentityDisplay::IdentityDisplay(QWidget *parent)
     : XLet(parent)
 {
+    qDebug("**************");
+    qDebug() << Q_FUNC_INFO << parent->objectName() << parent->styleSheet() ;
+    parent->setStyleSheet("{background:  red; margin : 0}");
+
     setTitle( tr("Identity") );
     setAccessibleName( tr("Current User Panel") );
+    setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
+    setObjectName("identityXlet");
+
     m_gui_buttonsize = 16;
 
-    m_glayout = new QGridLayout(this);
-    // m_glayout->setMargin(0);
+    QVBoxLayout* vboxLayout = new QVBoxLayout(this);
+    QFrame* m_identitybck = new QFrame(this);
+    m_identitybck->setObjectName("identitybck");
+    vboxLayout->addWidget(m_identitybck);
+
+
+    m_glayout = new QGridLayout(m_identitybck);
+    m_glayout->setObjectName("identitylayout");
+
     m_user = new QLabel(this);
     m_user->setObjectName("fullname");
-    //m_user->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-    setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
 
     m_phonenum = new QLabel(this);
     m_phonenum->setObjectName("phonenum");
+
     m_presencevalue = new QComboBox(this);
     m_presencevalue->setSizeAdjustPolicy(QComboBox::AdjustToContents);
     m_presencevalue->setProperty("function", "presence");
@@ -87,9 +100,7 @@ IdentityDisplay::IdentityDisplay(QWidget *parent)
             this, SLOT(idxChanged(int)));
 
     m_icon_user = new QLabel(this);
-
     m_icon_user->setPixmap(QPixmap(":/images/identity/identity-user.png"));
-
     m_icon_user->setContentsMargins(0, 0, 5, 0);
 
     m_agent = new IdentityAgent(this);
@@ -139,6 +150,7 @@ IdentityDisplay::IdentityDisplay(QWidget *parent)
     // Enable/disable presence combobox if presence function has changed in config
     connect(b_engine, SIGNAL(settingsChanged()),
             this, SLOT(updatePresence()));
+    qDebug()<< m_glayout->geometry();
 }
 
 void IdentityDisplay::setupIcons()

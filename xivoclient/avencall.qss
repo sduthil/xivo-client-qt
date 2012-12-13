@@ -7,6 +7,12 @@
 /*
  * Main Window
  */
-QMainWindow {background:  #093C7B}
 
-Switchboard {background: yellow}
+QMainWindow {background:  qlineargradient(y1: 0.05, y2: 0.55, stop: 0 #093C7B, stop: 1.0 white); 
+                    margin : 0px; padding : 0px}
+QVBoxLayout#identitylayout {color : white}
+QFrame#identitybck { color : white; 
+                    background:  qlineargradient(y1: 0.15, y2: 0.75, stop: 0 #093C7B, stop: 1.0 #80aade); 
+                    margin : 0px; padding : 0px}
+QFrame#identitybck QLabel {color : white}
+
