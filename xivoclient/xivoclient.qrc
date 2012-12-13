@@ -1,6 +1,5 @@
-<!DOCTYPE RCC>
-<RCC version="1.0">
-    <qresource>
+<RCC>
+    <qresource prefix="/">
         <file>xivo.qss</file>
         <file>obj/xivoclient_fr.qm</file>
         <file>obj/xivoclient_es_ES.qm</file>
@@ -39,5 +38,6 @@
         <file>images/disconnected.png</file>
         <file>images/warning.png</file>
         <file>images/padlock.png</file>
+        <file>avencall.qss</file>
     </qresource>
 </RCC>
