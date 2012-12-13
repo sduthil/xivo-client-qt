@@ -25,3 +25,10 @@ QTabBar::tab:selected, QTabBar::tab:hover {background: white; color : #F37021}
 
 /*QTabWidget QWidget {background: white}*/
 QTabWidget > * {border: 1px solid #808080 ; border-radius: 10px}
+
+QDockWidget { color : #093C7B; background : white}
+
+QDockWidget::title {
+    background : qlineargradient(y1: 0.15, y2: 0.75, stop: 0 darkgrey, stop: 1.0 lightgrey);
+    padding-left: 5px;
+}
