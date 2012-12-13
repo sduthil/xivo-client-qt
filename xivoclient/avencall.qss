@@ -16,3 +16,9 @@ QFrame#identitybck { color : white;
                     margin : 0px; padding : 0px}
 QFrame#identitybck QLabel {color : white}
 
+
+QTabBar::tab {background: qlineargradient(y1: 0.45, y2: 0.55, stop: 0 #fbb638, stop: 1.0 #f38402);
+                /*font: bold;*/ /* Qt Bug : text is truncated. See QTBUG-5052 and QTBUG-8209 */
+                color: white ; padding: 3px;
+                border: 2px solid white; border-top-left-radius: 10px; border-top-right-radius: 10px}
+QTabBar::tab:selected, QTabBar::tab:hover {background: qlineargradient(y1: 0.45, y2: 0.55, stop: 0 #3bc0ff, stop: 1.0 #05aefd)}
