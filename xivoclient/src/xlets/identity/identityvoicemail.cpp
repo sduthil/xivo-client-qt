@@ -34,6 +34,8 @@
 #include <QGridLayout>
 #include <QPixmap>
 #include <QLabel>
+#include <QToolTip>
+#include <QDebug>
 #include "baseengine.h"
 #include "identityvoicemail.h"
 #include "userinfo.h"
@@ -44,30 +46,45 @@
 IdentityVoiceMail::IdentityVoiceMail(QWidget * parent)
     : QWidget(parent), m_initialized(false), m_voicemailinfo(NULL)
 {
+    setObjectName("identityvoicemail");
     m_layout = new QGridLayout( this );
 
     m_iconButton = new QPushButton(this);
     m_iconButton->setFocusPolicy(Qt::NoFocus);
     m_iconButton->setToolTip(tr("call your voicemail"));
-    QPixmap icon = QPixmap(":/images/identity/kthememgr.png");
+    icon_no_message = QPixmap(":/images/identity/internet-mail.png");
+    icon_new_message = QPixmap(":/images/identity/mail-message-new.png");
     m_iconButton->setObjectName("voicemail_button");
-    m_iconButton->setIcon(icon);
+    m_iconButton->setIcon(icon_no_message);
     m_iconButton->setFlat(true);
-    m_iconButton->setIconSize(icon.size());
+    m_iconButton->setIconSize(icon_no_message.size());
     m_iconButton->setEnabled(false);
+
+    QGridLayout *text_layout = new QGridLayout(m_iconButton);
+
+    newMessageIndicator = new QPushButton(this);
+    newMessageIndicator->setText("");
+    newMessageIndicator->setStyleSheet("QPushButton {color : white; background-color: #F37021;border-radius: 8px;}");
+    newMessageIndicator->setEnabled(false);
+    newMessageIndicator->setFixedWidth(20);
+
+    oldMessageIndicator = new QPushButton(this);
+    oldMessageIndicator->setText("");
+    oldMessageIndicator->setStyleSheet("QPushButton {color : white; background-color: darkgrey;border-radius: 8px;}");
+    oldMessageIndicator->setEnabled(false);
+    oldMessageIndicator->setVisible(true);
+    oldMessageIndicator->setFixedWidth(20);
+
+    text_layout->addWidget(oldMessageIndicator,0,0);
+    text_layout->addWidget(newMessageIndicator,1,1);
     m_layout->addWidget(m_iconButton, 0, 0, 3, 1, Qt::AlignHCenter|Qt::AlignTop);
+
     connect(m_iconButton, SIGNAL(clicked()), this, SLOT(callVoiceMail()));
 
     m_name = new QLabel(this);
     m_name->setObjectName("voicemail_num");
     m_layout->addWidget(m_name, 0, 1, Qt::AlignLeft|Qt::AlignVCenter);
 
-    m_old = new QLabel(this);
-    m_layout->addWidget(m_old, 1, 1, Qt::AlignLeft|Qt::AlignVCenter);
-
-    m_new = new QLabel(this);
-    m_layout->addWidget(m_new, 2, 1, Qt::AlignLeft|Qt::AlignVCenter);
-    m_layout->setColumnStretch(2, 1);
 }
 
 void IdentityVoiceMail::setVoiceMailId(const QString & xvoicemailid)
@@ -136,6 +153,19 @@ void IdentityVoiceMail::updateVoiceMailStatus(const QString & xvoicemailid)
         return;
     if (m_voicemailinfo == NULL)
         return;
-    m_old->setText(tr("%1 old").arg(m_voicemailinfo->oldMessages()));
-    m_new->setText(tr("%1 new").arg(m_voicemailinfo->newMessages()));
+    updateMessageIndicators(m_voicemailinfo->newMessages(),m_voicemailinfo->oldMessages());
+    updateMessageIndicators(3,6);
 }
+
+void IdentityVoiceMail::updateMessageIndicators(const int nbOfNewMessages, const int nbOfOldMessages)
+{
+     newMessageIndicator->setText(QString::number(nbOfNewMessages));
+     oldMessageIndicator->setText(QString::number(nbOfOldMessages));
+     if (nbOfNewMessages == 0) {
+             m_iconButton->setIcon(icon_no_message);
+     }
+     else {
+             m_iconButton->setIcon(icon_new_message);
+     }
+ }
+

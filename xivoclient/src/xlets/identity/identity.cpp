@@ -62,13 +62,8 @@ XLet* XLetIdentityPlugin::newXLetInstance(QWidget *parent)
 IdentityDisplay::IdentityDisplay(QWidget *parent)
     : XLet(parent)
 {
-    qDebug("**************");
-    qDebug() << Q_FUNC_INFO << parent->objectName() << parent->styleSheet() ;
-    parent->setStyleSheet("{background:  red; margin : 0}");
-
     setTitle( tr("Identity") );
     setAccessibleName( tr("Current User Panel") );
-    setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
     setObjectName("identityXlet");
 
     m_gui_buttonsize = 16;
@@ -150,7 +145,6 @@ IdentityDisplay::IdentityDisplay(QWidget *parent)
     // Enable/disable presence combobox if presence function has changed in config
     connect(b_engine, SIGNAL(settingsChanged()),
             this, SLOT(updatePresence()));
-    qDebug()<< m_glayout->geometry();
 }
 
 void IdentityDisplay::setupIcons()
