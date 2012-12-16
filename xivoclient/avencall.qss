@@ -15,7 +15,7 @@ QFrame#identitybck { color : white;
                     /*background:  qlineargradient(y1: 0.15, y2: 0.75, stop: 0 #093C7B, stop: 1.0 #80aade);*/ 
                     margin : 0px; padding : 0px}
 QFrame#identitybck QLabel {color : white}
-QWidget#identityvoicemail > * {background: transparent;}
+
 
 QTabWidget::tab-bar {left : 50px}
 QTabBar::tab {background: #808080;

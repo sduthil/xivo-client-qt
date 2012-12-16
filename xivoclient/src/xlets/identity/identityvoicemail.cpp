@@ -48,7 +48,7 @@ IdentityVoiceMail::IdentityVoiceMail(QWidget * parent)
 {
     setObjectName("identityvoicemail");
     m_layout = new QGridLayout( this );
-
+    m_layout->setSpacing(2);
     m_iconButton = new QPushButton(this);
     m_iconButton->setFocusPolicy(Qt::NoFocus);
     m_iconButton->setToolTip(tr("call your voicemail"));
@@ -59,9 +59,9 @@ IdentityVoiceMail::IdentityVoiceMail(QWidget * parent)
     m_iconButton->setFlat(true);
     m_iconButton->setIconSize(icon_no_message.size());
     m_iconButton->setEnabled(false);
-
-    QGridLayout *text_layout = new QGridLayout(m_iconButton);
-
+    m_iconButton->setStyleSheet("QPushButton {background: transparent;}");
+    QGridLayout *indicatorsLayout = new QGridLayout(m_iconButton);
+    indicatorsLayout->setSpacing(0);
     newMessageIndicator = new QPushButton(this);
     newMessageIndicator->setText("");
     newMessageIndicator->setStyleSheet("QPushButton {color : white; background-color: #F37021;border-radius: 8px;}");
@@ -75,15 +75,15 @@ IdentityVoiceMail::IdentityVoiceMail(QWidget * parent)
     oldMessageIndicator->setVisible(true);
     oldMessageIndicator->setFixedWidth(20);
 
-    text_layout->addWidget(oldMessageIndicator,0,0);
-    text_layout->addWidget(newMessageIndicator,1,1);
-    m_layout->addWidget(m_iconButton, 0, 0, 3, 1, Qt::AlignHCenter|Qt::AlignTop);
+    indicatorsLayout->addWidget(oldMessageIndicator,0,0);
+    indicatorsLayout->addWidget(newMessageIndicator,1,1);
+    m_layout->addWidget(m_iconButton, 0, 0);
 
     connect(m_iconButton, SIGNAL(clicked()), this, SLOT(callVoiceMail()));
 
     m_name = new QLabel(this);
     m_name->setObjectName("voicemail_num");
-    m_layout->addWidget(m_name, 0, 1, Qt::AlignLeft|Qt::AlignVCenter);
+    m_layout->addWidget(m_name, 1, 0, Qt::AlignLeft|Qt::AlignVCenter);
 
 }
 
