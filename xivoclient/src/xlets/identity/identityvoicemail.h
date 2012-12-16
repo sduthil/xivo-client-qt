@@ -71,6 +71,7 @@ class IdentityVoiceMail : public QWidget
         QLabel * m_name;              //!< box name
         QPixmap icon_no_message;
         QPixmap icon_new_message;
+        static const int indicatorsize = 20;
 };
 
 #endif
