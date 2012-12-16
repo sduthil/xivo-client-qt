@@ -66,14 +66,14 @@ IdentityVoiceMail::IdentityVoiceMail(QWidget * parent)
     newMessageIndicator->setText("");
     newMessageIndicator->setStyleSheet("QPushButton {color : white; background-color: #F37021;border-radius: 8px;}");
     newMessageIndicator->setEnabled(false);
-    newMessageIndicator->setFixedWidth(20);
+    newMessageIndicator->setFixedWidth(IdentityVoiceMail::indicatorsize);
 
     oldMessageIndicator = new QPushButton(this);
     oldMessageIndicator->setText("");
     oldMessageIndicator->setStyleSheet("QPushButton {color : white; background-color: darkgrey;border-radius: 8px;}");
     oldMessageIndicator->setEnabled(false);
     oldMessageIndicator->setVisible(true);
-    oldMessageIndicator->setFixedWidth(20);
+    oldMessageIndicator->setFixedWidth(IdentityVoiceMail::indicatorsize);
 
     indicatorsLayout->addWidget(oldMessageIndicator,0,0);
     indicatorsLayout->addWidget(newMessageIndicator,1,1);
