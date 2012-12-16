@@ -15,5 +15,7 @@
         <file>../../../images/identity/identity-phone.png</file>
         <file>../../../images/identity/identity-user.png</file>
         <file>../../../images/identity/kthememgr.png</file>
+        <file>../../../images/identity/internet-mail.png</file>
+        <file>../../../images/identity/mail-message-new.png</file>
     </qresource>
 </RCC>

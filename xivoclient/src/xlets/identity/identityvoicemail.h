@@ -56,6 +56,8 @@ class IdentityVoiceMail : public QWidget
         void queryVM();
     private slots:
         void callVoiceMail();
+        void updateMessageIndicators(const int nbOfNewMessages, const int nbOfReadMessages);
+
 
     private:
         QString m_xvoicemailid;
@@ -64,9 +66,11 @@ class IdentityVoiceMail : public QWidget
 
         QGridLayout * m_layout;       //!< layout
         QPushButton * m_iconButton;   //!< icon
+        QPushButton * newMessageIndicator;
+        QPushButton * oldMessageIndicator;
         QLabel * m_name;              //!< box name
-        QLabel * m_old;               //!< number of old messages
-        QLabel * m_new;               //!< number of new messages
+        QPixmap icon_no_message;
+        QPixmap icon_new_message;
 };
 
 #endif
