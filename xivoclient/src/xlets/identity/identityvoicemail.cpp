@@ -154,7 +154,7 @@ void IdentityVoiceMail::updateVoiceMailStatus(const QString & xvoicemailid)
     if (m_voicemailinfo == NULL)
         return;
     updateMessageIndicators(m_voicemailinfo->newMessages(),m_voicemailinfo->oldMessages());
-    updateMessageIndicators(3,6);
+    //updateMessageIndicators(3,6);
 }
 
 void IdentityVoiceMail::updateMessageIndicators(const int nbOfNewMessages, const int nbOfOldMessages)
