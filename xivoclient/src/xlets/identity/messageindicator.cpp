@@ -31,53 +31,35 @@
  * $Date$
  */
 
-#ifndef __IDENTITYVOICEMAIL_H__
-#define __IDENTITYVOICEMAIL_H__
-
-#include <QWidget>
-#include <QVariant>
-#include <QPushButton>
-#include <QLabel>
 #include "messageindicator.h"
 
-class QGridLayout;
-class UserInfo;
-class VoiceMailInfo;
 
-/*! \brief Identity Voice mail display
- */
-class IdentityVoiceMail : public QWidget
+MessageIndicator::MessageIndicator(QWidget * parent, const QString &background)
+: QPushButton(parent)
 {
-    Q_OBJECT
-
-    public:
-        IdentityVoiceMail(QWidget *parent);
-        void setVoiceMailId(const QString &);
-        void svcSummary(QVariantMap &svcstatus, const UserInfo *ui);
-    public slots:
-        void updateVoiceMailConfig(const QString &);
-        void updateVoiceMailStatus(const QString &);
-    protected:
-        void queryVM();
-    private slots:
-        void callVoiceMail();
-        void updateMessageIndicators(const int nbOfNewMessages, const int nbOfReadMessages);
-
-
-    private:
-        QString m_xvoicemailid;
-        bool m_initialized;
-        const VoiceMailInfo * m_voicemailinfo;
-
-        QGridLayout * m_layout;       //!< layout
-        QPushButton * m_iconButton;   //!< icon
-        MessageIndicator * newMessageIndicator;
-        MessageIndicator * oldMessageIndicator;
-        QLabel * m_name;              //!< box name
-        QPixmap icon_no_message;
-        QPixmap icon_new_message;
-        QPixmap icon_read_message;
-        static const int indicatorsize = 20;
+    m_background = background;
+    setText("");
+    setBackground(m_background);
+    setEnabled(false);
+    setFixedWidth(indicatorsize);
 };
 
-#endif
+void MessageIndicator::setIndicator(int number)
+{
+    if (number == 0) {
+            setText("");
+            setBackground("transparent");
+    } else {
+            setText(QString::number(number));
+            setBackground(m_background);
+    }
+};
+
+
+void MessageIndicator::setBackground(const QString &color)
+{
+    setStyleSheet("QPushButton {color : white; background-color: "+ color + ";border-radius: 8px;}");
+};
+
+
+
