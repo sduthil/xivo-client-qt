@@ -108,12 +108,13 @@ void Switchboard::setupUi()
     ui.incomingCallsView->hideColumn(QueueEntriesModel::ID);
     ui.incomingCallsView->hideColumn(QueueEntriesModel::POSITION);
     ui.incomingCallsView->hideColumn(QueueEntriesModel::UNIQUE_ID);
+    ui.incomingCallsView->setSortingEnabled(false);
 
     ui.waitingCallsView->setModel(this->m_waiting_call_proxy_model);
     ui.waitingCallsView->hideColumn(QueueEntriesModel::ID);
     ui.waitingCallsView->hideColumn(QueueEntriesModel::POSITION);
     ui.waitingCallsView->hideColumn(QueueEntriesModel::UNIQUE_ID);
-
+    ui.waitingCallsView->setSortingEnabled(false);
 }
 
 void Switchboard::postInitializationSetup()
@@ -255,7 +256,6 @@ void Switchboard::updateWaitingHeader(const QString & queue_id, const QVariantLi
     QString header_text = QString(tr("%n call(s)", "", entries.size()));
     this->ui.waitingCallCountLabel->setText(header_text);
 }
-
 
 bool Switchboard::isSwitchboardQueue(const QString &queue_id) const
 {
