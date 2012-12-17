@@ -1,5 +1,5 @@
 
-QMainWindow {background:  qlineargradient(y1: 0.05, y2: 0.55, stop: 0 #093C7B, stop: 1.0 white); 
+QMainWindow {background:  qlineargradient(y1: 0.05, y2: 0.35, stop: 0 #093C7B, stop: 1.0 white); 
                     margin : 0px; padding : 0px}
 QVBoxLayout#identitylayout {color : white}
 QFrame#identitybck { color : white; 
@@ -11,12 +11,14 @@ QFrame#identitybck QLabel#voicemail_num {color : transparent}
 QTabWidget::tab-bar {left : 50px}
 QTabBar::tab {background: #808080;
                 /*font: bold;*/ /* Qt Bug : text is truncated. See QTBUG-5052 and QTBUG-8209 */
-                color: white ; padding: 3px;
-                border: 2px solid white; border-top-left-radius: 10px; border-top-right-radius: 10px}
+                color: white ; padding: 3px; margin-left : 4px;
+                border: 0px solid white}
 QTabBar::tab:selected, QTabBar::tab:hover {background: white; color : #F37021}
 
 /*QTabWidget QWidget {background: white}*/
-QTabWidget > * {border: 1px solid #808080 ; border-radius: 10px}
+QTabWidget > * {border: 0px solid #808080 ; border-radius: 10px}
+
+QTabWidget::pane {border : 1px}
 
 QDockWidget { color : #093C7B; background : white}
 
