@@ -1,5 +1,5 @@
 /* XiVO Client
- * Copyright (C) 2007-2013, Avencall
+ * Copyright (C) 2007-2011, Avencall
  *
  * This file is part of XiVO Client.
  *
@@ -27,53 +27,29 @@
  * along with XiVO Client.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __IDENTITYVOICEMAIL_H__
-#define __IDENTITYVOICEMAIL_H__
+/* $Revision$
+ * $Date$
+ */
+
+#ifndef __MESSAGEINDICATOR_H__
+#define __MESSAGEINDICATOR_H__
 
 #include <QWidget>
-#include <QVariant>
 #include <QPushButton>
-#include <QLabel>
-#include "messageindicator.h"
 
-class QGridLayout;
-class UserInfo;
-class VoiceMailInfo;
 
-/*! \brief Identity Voice mail display
- */
-class IdentityVoiceMail : public QWidget
+class MessageIndicator : public QPushButton
 {
     Q_OBJECT
 
-    public:
-        IdentityVoiceMail(QWidget *parent);
-        void setVoiceMailId(const QString &);
-        void svcSummary(QVariantMap &svcstatus, const UserInfo *ui);
-    public slots:
-        void updateVoiceMailConfig(const QString &);
-        void updateVoiceMailStatus(const QString &);
-    protected:
-        void queryVM();
-    private slots:
-        void callVoiceMail();
-        void updateMessageIndicators(const int nbOfNewMessages, const int nbOfReadMessages);
+public:
+    MessageIndicator(QWidget *parent, const QString &background);
+    void setIndicator(int number);
+private:
+    QString m_background;
+    static const int indicatorsize = 20;
 
-
-    private:
-        QString m_xvoicemailid;
-        bool m_initialized;
-        const VoiceMailInfo * m_voicemailinfo;
-
-        QGridLayout * m_layout;       //!< layout
-        QPushButton * m_iconButton;   //!< icon
-        MessageIndicator * newMessageIndicator;
-        MessageIndicator * oldMessageIndicator;
-        QLabel * m_name;              //!< box name
-        QPixmap icon_no_message;
-        QPixmap icon_new_message;
-        QPixmap icon_read_message;
-        static const int indicatorsize = 20;
+    void setBackground(const QString &color);
 };
 
 #endif

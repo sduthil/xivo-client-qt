@@ -48,8 +48,9 @@ IdentityVoiceMail::IdentityVoiceMail(QWidget * parent)
     m_iconButton = new QPushButton(this);
     m_iconButton->setFocusPolicy(Qt::NoFocus);
     m_iconButton->setToolTip(tr("call your voicemail"));
-    icon_no_message = QPixmap(":/images/identity/internet-mail.png");
-    icon_new_message = QPixmap(":/images/identity/mail-message-new.png");
+    icon_no_message = QPixmap(":/images/identity/no_message.png");
+    icon_new_message = QPixmap(":/images/identity/new_message.png");
+    icon_read_message = QPixmap(":/images/identity/read_message.png");
     m_iconButton->setObjectName("voicemail_button");
     m_iconButton->setIcon(icon_no_message);
     m_iconButton->setFlat(true);
@@ -58,18 +59,8 @@ IdentityVoiceMail::IdentityVoiceMail(QWidget * parent)
     m_iconButton->setStyleSheet("QPushButton {background: transparent;}");
     QGridLayout *indicatorsLayout = new QGridLayout(m_iconButton);
     indicatorsLayout->setSpacing(0);
-    newMessageIndicator = new QPushButton(this);
-    newMessageIndicator->setText("");
-    newMessageIndicator->setStyleSheet("QPushButton {color : white; background-color: #F37021;border-radius: 8px;}");
-    newMessageIndicator->setEnabled(false);
-    newMessageIndicator->setFixedWidth(IdentityVoiceMail::indicatorsize);
-
-    oldMessageIndicator = new QPushButton(this);
-    oldMessageIndicator->setText("");
-    oldMessageIndicator->setStyleSheet("QPushButton {color : white; background-color: darkgrey;border-radius: 8px;}");
-    oldMessageIndicator->setEnabled(false);
-    oldMessageIndicator->setVisible(true);
-    oldMessageIndicator->setFixedWidth(IdentityVoiceMail::indicatorsize);
+    newMessageIndicator = new MessageIndicator(this,"#F37021");
+    oldMessageIndicator = new MessageIndicator(this,"darkgrey");
 
     indicatorsLayout->addWidget(oldMessageIndicator,0,0);
     indicatorsLayout->addWidget(newMessageIndicator,1,1);
@@ -150,18 +141,20 @@ void IdentityVoiceMail::updateVoiceMailStatus(const QString & xvoicemailid)
     if (m_voicemailinfo == NULL)
         return;
     updateMessageIndicators(m_voicemailinfo->newMessages(),m_voicemailinfo->oldMessages());
-    //updateMessageIndicators(3,6);
 }
 
 void IdentityVoiceMail::updateMessageIndicators(const int nbOfNewMessages, const int nbOfOldMessages)
 {
-     newMessageIndicator->setText(QString::number(nbOfNewMessages));
-     oldMessageIndicator->setText(QString::number(nbOfOldMessages));
-     if (nbOfNewMessages == 0) {
+     newMessageIndicator->setIndicator(nbOfNewMessages);
+     oldMessageIndicator->setIndicator(nbOfOldMessages);
+     if (nbOfNewMessages == 0 && nbOfOldMessages == 0) {
              m_iconButton->setIcon(icon_no_message);
      }
-     else {
+     else if (nbOfNewMessages > 0){
              m_iconButton->setIcon(icon_new_message);
+     }
+     else  {
+             m_iconButton->setIcon(icon_read_message);
      }
  }
 
