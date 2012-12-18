@@ -52,6 +52,7 @@ SearchPanel::SearchPanel(QWidget *parent) :
     QVBoxLayout *vlayout = new QVBoxLayout(this);
     vlayout->setMargin(0);
     QLabel *lbl = new QLabel(tr("N&ame or number to search :"), this);
+    lbl->setObjectName("contact_search");
     vlayout->addWidget(lbl, 0, Qt::AlignCenter);
     m_input = new ExtendedLineEdit(this);
     lbl->setBuddy(m_input);
