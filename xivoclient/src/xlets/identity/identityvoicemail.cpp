@@ -48,7 +48,9 @@ IdentityVoiceMail::IdentityVoiceMail(QWidget * parent)
 {
     setObjectName("identityvoicemail");
     m_layout = new QGridLayout( this );
-    m_layout->setSpacing(2);
+    m_layout->setSpacing(0);
+    m_layout->setContentsMargins(0, 15, 0, 0);
+
     m_iconButton = new QPushButton(this);
     m_iconButton->setFocusPolicy(Qt::NoFocus);
     m_iconButton->setToolTip(tr("call your voicemail"));
