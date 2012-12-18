@@ -15,10 +15,10 @@
    id="svg4649"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="phone.svg"
-   inkscape:export-filename="/home/jylebleu/projects/xivo-client-qt/xivoclient/images/identity/phone.png"
-   inkscape:export-xdpi="22.19986"
-   inkscape:export-ydpi="22.19986">
+   sodipodi:docname="phone_available.svg"
+   inkscape:export-filename="/home/jylebleu/projects/xivo-client-qt/xivoclient/images/identity/phone_available.png"
+   inkscape:export-xdpi="17.935928"
+   inkscape:export-ydpi="17.935928">
   <defs
      id="defs4651">
     <linearGradient
@@ -56,9 +56,9 @@
      inkscape:document-units="px"
      inkscape:current-layer="Phone"
      showgrid="false"
-     inkscape:window-width="1600"
-     inkscape:window-height="876"
-     inkscape:window-x="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1056"
+     inkscape:window-x="1600"
      inkscape:window-y="24"
      inkscape:window-maximized="1" />
   <metadata
