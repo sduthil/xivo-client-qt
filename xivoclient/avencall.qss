@@ -1,6 +1,9 @@
 
 QMainWindow {background:  qlineargradient(y1: 0.05, y2: 0.35, stop: 0 #093C7B, stop: 1.0 white); 
                     margin : 0px; padding : 0px}
+
+QLabel#contact_search {color : #F37021}
+
 QVBoxLayout#identitylayout {color : white}
 QFrame#identitybck { color : white; 
                     /*background:  qlineargradient(y1: 0.15, y2: 0.75, stop: 0 #093C7B, stop: 1.0 #80aade);*/ 
