@@ -32,7 +32,7 @@
 
 #include <QWidget>
 #include <QList>
-
+#include <QPushButton>
 #include <baseengine.h>
 
 class QGridLayout;
@@ -55,6 +55,7 @@ class IdentityPhone : public QWidget
     private:
         void setPhoneLines();
         QString m_xphoneid;
+        QString noOption;
 
         QGridLayout * m_layout;
         QLabel * m_icon;

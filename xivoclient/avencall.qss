@@ -8,6 +8,10 @@ QFrame#identitybck { color : white;
 QFrame#identitybck QLabel {color : white}
 QFrame#identitybck QLabel#voicemail_num {color : transparent}
 
+QFrame#identitybck QLabel#phone_number {color : transparent}
+QFrame#identitybck QLabel#phone_call {color : transparent}
+QFrame#identitybck QLabel#phone_calltxt {color : transparent}
+
 QTabWidget::tab-bar {left : 50px}
 QTabBar::tab {background: #808080;
                 /*font: bold;*/ /* Qt Bug : text is truncated. See QTBUG-5052 and QTBUG-8209 */

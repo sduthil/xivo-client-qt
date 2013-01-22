@@ -38,9 +38,11 @@
 #include "phoneinfo.h"
 #include "channelinfo.h"
 
+
 IdentityPhone::IdentityPhone(QWidget * parent)
     : QWidget(parent)
 {
+    noOption = tr("");
     m_layout = new QGridLayout(this);
     m_layout->setContentsMargins(0, 0, 0, 0);
 
@@ -49,15 +51,18 @@ IdentityPhone::IdentityPhone(QWidget * parent)
     m_icon->setContentsMargins(20, 0, 5, 0);
 
     m_phone = new QLabel(this);
+    m_phone->setObjectName("phone_number");
     m_phone->setContentsMargins(0, 0, 10, 0);
 
     m_phonecall = new QLabel(this);
+    m_phonecall->setObjectName("phone_call");
     m_phonecall->setContentsMargins(0, 0, 0, 0);
 
     m_phonecalltxt = new QLabel(this);
+    m_phonecalltxt->setObjectName("phone_calltxt");
     m_phonecalltxt->setContentsMargins(0, 0, 10, 0);
 
-    m_phonestatustxt = new QLabel(tr("No option"), this);
+    m_phonestatustxt = new QLabel(noOption, this);
     m_phonestatustxt->setScaledContents(true);
     m_phonestatustxt->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     m_phonestatustxt->setContentsMargins(0, 0, 10, 0);
@@ -130,10 +135,12 @@ void IdentityPhone::updatePhoneStatus(const QString & xphoneid)
                       "(no phone number)");
     qDebug() << "******************"<< hintstatus;
     square.fill(color);
-    m_phonecall->setPixmap(square);
-    m_phonecall->setToolTip(longname);
+    //m_phonecall->setPixmap(square);
+    //m_phonecall->setToolTip(longname);
     m_phonecalltxt->setText(longname);
     if (hintstatus == PhoneHint::available)   m_icon->setPixmap(QPixmap(":/images/identity/phone_available.png"));
+    if (hintstatus == PhoneHint::oncall)   m_icon->setPixmap(QPixmap(":/images/identity/phone_oncall.png"));
+    if (hintstatus == PhoneHint::ringing)   m_icon->setPixmap(QPixmap(":/images/identity/phone_ringing.png"));
     if (hintstatus == PhoneHint::unavailable) m_icon->setPixmap(QPixmap(":/images/identity/phone_unavailable.png"));
 
     m_icon->setToolTip(longname);
@@ -157,7 +164,7 @@ void IdentityPhone::svcSummary(const QVariantMap & svcstatus)
     } else if (svcstatus["incallfilter"].toBool()) {
         m_phonestatustxt->setText(tr("Call Filter"));
     } else {
-        m_phonestatustxt->setText(tr("No option"));
-        m_phonestatustxt->setToolTip(tr("No option"));
+        m_phonestatustxt->setText(noOption);
+        m_phonestatustxt->setToolTip(noOption);
     }
 }
