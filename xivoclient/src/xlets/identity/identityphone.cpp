@@ -45,7 +45,7 @@ IdentityPhone::IdentityPhone(QWidget * parent)
     m_layout->setContentsMargins(0, 0, 0, 0);
 
     m_icon = new QLabel(this);
-    m_icon->setPixmap(QPixmap(":/images/identity/identity-phone.png"));
+    m_icon->setPixmap(QPixmap(":/images/identity/phone_unavailable.png"));
     m_icon->setContentsMargins(20, 0, 5, 0);
 
     m_phone = new QLabel(this);
@@ -91,7 +91,7 @@ void IdentityPhone::updatePhoneConfig(const QString & xphoneid)
 
     QString phonenumber = phoneinfo->number();
     if (! phonenumber.isEmpty())
-        m_phone->setText(tr("Phone %1").arg(phonenumber));
+        m_phone->setText(tr("%1").arg(phonenumber));
     else
         m_phone->setText(tr("Phone <EMPTY>"));
     m_phone->setToolTip(tr("Protocol: %1\n"
@@ -128,12 +128,17 @@ void IdentityPhone::updatePhoneStatus(const QString & xphoneid)
     if (phonenumber.isEmpty())
         longname = tr("No status\n"
                       "(no phone number)");
-
+    qDebug() << "******************"<< hintstatus;
     square.fill(color);
     m_phonecall->setPixmap(square);
     m_phonecall->setToolTip(longname);
     m_phonecalltxt->setText(longname);
+    if (hintstatus == PhoneHint::available)   m_icon->setPixmap(QPixmap(":/images/identity/phone_available.png"));
+    if (hintstatus == PhoneHint::unavailable) m_icon->setPixmap(QPixmap(":/images/identity/phone_unavailable.png"));
+
+    m_icon->setToolTip(longname);
 }
+
 
 void IdentityPhone::svcSummary(const QVariantMap & svcstatus)
 {
