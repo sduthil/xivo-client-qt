@@ -1,4 +1,3 @@
-
 QMainWindow {background:  qlineargradient(y1: 0.05, y2: 0.35, stop: 0 #093C7B, stop: 1.0 white); 
                     margin : 0px; padding : 0px}
 
