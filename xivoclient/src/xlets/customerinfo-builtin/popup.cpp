@@ -83,7 +83,23 @@ Popup::Popup(const bool urlautoallow, QWidget *parent)
 
 Popup::~Popup()
 {
-    // qDebug() << Q_FUNC_INFO;
+    qDebug() << Q_FUNC_INFO;
+    qDebug() << "nfeeds" << m_nfeeds;
+    qDebug() << "sheetui" << m_sheetui;
+    qDebug() << "sheetpopup" << m_sheetpopup;
+    qDebug() << "systraypopup" << m_systraypopup;
+    qDebug() << "focus" << m_focus;
+    qDebug() << "urlautoallow" << m_urlautoallow;
+    qDebug() << "toupdate" << m_toupdate;
+    qDebug() << "firstline" << m_firstline;
+
+    qDebug() << "xmlInputSource pointer" << m_xmlInputSource;
+    qDebug() << "handler pointer" << m_handler;
+    qDebug() << "reader pointer" << m_reader;
+    qDebug() << "sheetui widget pointer" << m_sheetui_widget;
+    qDebug() << "uiloader" << m_uiloader;
+    qDebug() << "";
+
     delete m_xmlInputSource;
     delete m_handler;
     delete m_reader;

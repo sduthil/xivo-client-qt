@@ -90,14 +90,21 @@ void CustomerInfoPanel::showNewProfile(Popup * popup)
 
 void CustomerInfoPanel::popupDestroyed(QObject * obj)
 {
-    qDebug() << Q_FUNC_INFO
-             << obj->property("ipbxid") << obj->property("channel");
-    foreach(Popup * mpopup, m_popups)
+    qDebug() << Q_FUNC_INFO;
+    qDebug() << "obj ipbxid" << obj->property("ipbxid");
+    qDebug() << "obj channel" << obj->property("channel");
+    qDebug() << "popups" << m_popups;
+    qDebug() << "tablimit" << m_tablimit;
+    qDebug() << "autourl" << m_autourl_allowed;
+
+    foreach(Popup * mpopup, m_popups) {
+        qDebug() << "popup" << mpopup;
         if ( (mpopup->callIpbxId() == obj->property("ipbxid").toString()) &&
              (mpopup->callChannel() == obj->property("channel").toString()) ) {
             m_popups.removeAll(mpopup);
             mpopup->deleteLater();
         }
+    }
 }
 
 void CustomerInfoPanel::displayFiche(const QString & fichecontent, bool qtui, const QString & id)
