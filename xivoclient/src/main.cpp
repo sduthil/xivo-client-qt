@@ -51,6 +51,45 @@
 
 #include "main.h"
 
+QTextStream *out = 0;
+
+void logOutput(QtMsgType type, const char *msg)
+{
+    QString debugdate = QDateTime::currentDateTime().toString("yyyy.MM.dd hh:mm:ss");
+    switch (type)
+    {
+    case QtDebugMsg:
+        debugdate += "[D]";
+        break;
+    case QtWarningMsg:
+        debugdate += "[W]";
+        break;
+    case QtCriticalMsg:
+        debugdate += "[C]";
+        break;
+    case QtFatalMsg:
+        debugdate += "[F]";
+    }
+    (*out) << debugdate << " " << msg << endl;
+
+    if (QtFatalMsg == type)
+    {
+        abort();
+    }
+}
+
+void addLogfile()
+{
+    QString fileName = QCoreApplication::applicationFilePath().append(".log");
+    QFile *log = new QFile(fileName);
+    if (log->open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
+        out = new QTextStream(log);
+        qInstallMsgHandler(logOutput);
+    } else {
+        qDebug() << "Error opening log file '" << fileName << "'. All debug output redirected to console.";
+    }
+}
+
 /*
  * Set some static Qt parameters for using QSettings,
  * instantiate a MainWidget window and a BaseEngine object.
@@ -201,6 +240,7 @@ void clean_xivoclient(ExecObjects exec_obj)
 int main(int argc, char **argv)
 {
     ExecObjects exec_obj= init_xivoclient(argc, argv);
+    addLogfile();
     int ret = run_xivoclient(exec_obj);
     clean_xivoclient(exec_obj);
     return ret;
