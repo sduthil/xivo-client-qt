@@ -54,6 +54,19 @@ void QueuesSortFilterProxyModel::setFilterId(const QString &xqueueid, bool filte
     }
 }
 
+QVariant QueuesSortFilterProxyModel::data(const QModelIndex &index, int role) const
+{
+    int col = index.column();
+    if (col == QueuesModel::NAME && role == Qt::DisplayRole) {
+        const QString &name = this->sourceModel()->data(index, role).toString();
+        QModelIndex number_index = sourceModel()->index(index.row(), QueuesModel::NUMBER, index);
+        const QString &number = this->sourceModel()->data(number_index, role).toString();
+        return QString("%1\n(%2)").arg(name).arg(number);
+    } else {
+        return sourceModel()->data(index, role);
+    }
+}
+
 bool QueuesSortFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
     QModelIndex id_modelIndex = sourceModel()->index(sourceRow, QueuesModel::ID, sourceParent);

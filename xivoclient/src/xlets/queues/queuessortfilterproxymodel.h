@@ -41,6 +41,7 @@ class QueuesSortFilterProxyModel : public AbstractSortFilterProxyModel
     public:
         QueuesSortFilterProxyModel(QObject *parent = NULL);
         void setFilterId(const QString &, bool);
+        virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     public slots:
         void updateFilter();
     protected:

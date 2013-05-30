@@ -59,7 +59,7 @@ void QueuesView::updateColumnHidden()
     }
 
     {
-        setColumnHidden(QueuesModel::NUMBER, false);
+        setColumnHidden(QueuesModel::NUMBER, true);
     }
 }
 
