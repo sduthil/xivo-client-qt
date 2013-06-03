@@ -34,12 +34,10 @@
 #include <xletlib/xletinterface.h>
 #include <ipbxlistener.h>
 
-#include "queuesmodel.h"
-#include "queuesview.h"
-
 class UserInfo;
 class XletQueues;
 class QueueInfo;
+class QueuesModel;
 class QueuesProxyModel;
 
 class XletQueuesConfigure : public QWidget

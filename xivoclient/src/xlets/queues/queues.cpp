@@ -43,7 +43,9 @@
 #include <storage/queueinfo.h>
 
 #include "queues.h"
+#include "queuesmodel.h"
 #include "queuesproxymodel.h"
+#include "queuesview.h"
 
 Q_EXPORT_PLUGIN2(xletqueuesplugin, XLetQueuesPlugin);
 
