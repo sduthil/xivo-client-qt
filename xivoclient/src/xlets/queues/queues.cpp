@@ -43,6 +43,7 @@
 #include <storage/queueinfo.h>
 
 #include "queues.h"
+#include "queuesproxymodel.h"
 
 Q_EXPORT_PLUGIN2(xletqueuesplugin, XLetQueuesPlugin);
 
@@ -72,7 +73,7 @@ XletQueues::XletQueues(QWidget *parent)
 
     m_model = new QueuesModel(this);
 
-    m_proxyModel = new QueuesSortFilterProxyModel(this);
+    m_proxyModel = new QueuesProxyModel(this);
     m_proxyModel->setSourceModel(m_model);
     m_proxyModel->updateFilter();
 

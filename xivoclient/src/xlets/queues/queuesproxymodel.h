@@ -27,19 +27,19 @@
  * along with XiVO Client.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __QUEUESSORTFILTERPROXYMODEL_H__
-#define __QUEUESSORTFILTERPROXYMODEL_H__
+#ifndef __QUEUESPROXYMODEL_H__
+#define __QUEUESPROXYMODEL_H__
 
 #include <QStringList>
 
 #include <xletlib/abstract_sort_filter_proxy_model.h>
 
-class QueuesSortFilterProxyModel : public AbstractSortFilterProxyModel
+class QueuesProxyModel : public AbstractSortFilterProxyModel
 {
     Q_OBJECT
 
     public:
-        QueuesSortFilterProxyModel(QObject *parent = NULL);
+        QueuesProxyModel(QObject *parent = NULL);
         void setFilterId(const QString &, bool);
         virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     public slots:

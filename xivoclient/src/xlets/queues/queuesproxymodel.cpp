@@ -29,10 +29,10 @@
 
 #include <baseengine.h>
 
-#include "queuessortfilterproxymodel.h"
+#include "queuesproxymodel.h"
 #include "queuesmodel.h"
 
-QueuesSortFilterProxyModel::QueuesSortFilterProxyModel(QObject *parent)
+QueuesProxyModel::QueuesProxyModel(QObject *parent)
     : AbstractSortFilterProxyModel(parent)
 {
     connect(b_engine, SIGNAL(settingsChanged()),
@@ -41,7 +41,7 @@ QueuesSortFilterProxyModel::QueuesSortFilterProxyModel(QObject *parent)
 
 /*! \brief filter list setter
  */
-void QueuesSortFilterProxyModel::setFilterId(const QString &xqueueid, bool filtered)
+void QueuesProxyModel::setFilterId(const QString &xqueueid, bool filtered)
 {
     if (filtered) {
         if (! m_filtered.contains(xqueueid)) {
@@ -54,7 +54,7 @@ void QueuesSortFilterProxyModel::setFilterId(const QString &xqueueid, bool filte
     }
 }
 
-QVariant QueuesSortFilterProxyModel::data(const QModelIndex &index, int role) const
+QVariant QueuesProxyModel::data(const QModelIndex &index, int role) const
 {
     int col = index.column();
     if (col == QueuesModel::NAME && role == Qt::DisplayRole) {
@@ -67,7 +67,7 @@ QVariant QueuesSortFilterProxyModel::data(const QModelIndex &index, int role) co
     }
 }
 
-bool QueuesSortFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
+bool QueuesProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
     QModelIndex id_modelIndex = sourceModel()->index(sourceRow, QueuesModel::ID, sourceParent);
     QString id_string = sourceModel()->data(id_modelIndex).toString();
@@ -76,7 +76,7 @@ bool QueuesSortFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelInd
 
 /*! \brief Update the filter list from config
  */
-void QueuesSortFilterProxyModel::updateFilter()
+void QueuesProxyModel::updateFilter()
 {
     m_filtered.clear();
     /*! \todo review how and when the filter settings are stored :

@@ -35,12 +35,12 @@
 #include <ipbxlistener.h>
 
 #include "queuesmodel.h"
-#include "queuessortfilterproxymodel.h"
 #include "queuesview.h"
 
 class UserInfo;
 class XletQueues;
 class QueueInfo;
+class QueuesProxyModel;
 
 class XletQueuesConfigure : public QWidget
 {
@@ -76,7 +76,7 @@ class XletQueues : public XLet, IPBXListener
         XletQueuesConfigure *m_configureWindow;
 
         QueuesModel *m_model;
-        QueuesSortFilterProxyModel *m_proxyModel;
+        QueuesProxyModel *m_proxyModel;
 };
 
 class XLetQueuesPlugin : public QObject, XLetInterface
