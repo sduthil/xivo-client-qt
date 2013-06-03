@@ -50,7 +50,6 @@ class QueuesModel : public QAbstractTableModel
 {
     Q_OBJECT
 
-    // Methods
     public:
         QueuesModel(QObject *parent = NULL);
 
@@ -76,12 +75,26 @@ class QueuesModel : public QAbstractTableModel
         QVariant formatTime(const QVariant &) const;
         QVariant formatPercent(const QVariant &) const;
         void refreshQueueDisplay(const QString &queue_xid);
-    // Attributes
+
     public:
         enum Columns {
-            ID, NUMBER, NAME, WAITING_CALLS, EWT, CURRENT_MAX_WAIT,
-            TALKING_AGENTS, LOGGEDAGENTS, AVAILABLE_AGENTS,
-            RECEIVED, ANSWERED, ABANDONED, MEAN_WAIT, TOTAL_MAX_WAIT, EFFICIENCY, QOS, NB_COL
+            ID,
+            NUMBER,
+            NAME,
+            WAITING_CALLS,
+            EWT,
+            CURRENT_MAX_WAIT,
+            TALKING_AGENTS,
+            LOGGEDAGENTS,
+            AVAILABLE_AGENTS,
+            RECEIVED,
+            ANSWERED,
+            ABANDONED,
+            MEAN_WAIT,
+            TOTAL_MAX_WAIT,
+            EFFICIENCY,
+            QOS,
+            NB_COL
         };
 
     signals:
