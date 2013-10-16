@@ -37,7 +37,8 @@
 
 
 CentralWidget::CentralWidget(MainWindow *parent)
-    : QStackedWidget(parent),
+    : QFrame(parent),
+      m_layout(new QVBoxLayout(this)),
       m_main_window(parent),
       m_login_widget(NULL),
       m_main_widget(NULL),
@@ -67,8 +68,7 @@ void CentralWidget::initialize()
     this->m_login_widget = assembler->loginWidget();
     this->m_main_widget = assembler->mainWidget();
     this->m_main_window->setCentralWidget(this);
-    this->addWidget(this->m_login_widget);
-    this->setCurrentWidget(this->m_login_widget);
+    this->m_layout->addWidget(this->m_login_widget);
 }
 
 void CentralWidget::initialized()
@@ -97,16 +97,18 @@ void CentralWidget::setStatusNotLogged()
 
 void CentralWidget::showMainWidget()
 {
-    this->removeWidget(this->m_login_widget);
-    this->addWidget(this->m_main_widget);
-    this->setCurrentWidget(this->m_main_widget);
+    this->m_layout->removeWidget(this->m_login_widget);
+    this->m_layout->addWidget(this->m_main_widget);
+    this->m_login_widget->hide();
+    this->m_main_widget->show();
 }
 
 void CentralWidget::showLoginWidget()
 {
-    this->removeWidget(this->m_main_widget);
-    this->addWidget(this->m_login_widget);
-    this->setCurrentWidget(this->m_login_widget);
+    this->m_layout->removeWidget(this->m_main_widget);
+    this->m_layout->addWidget(this->m_login_widget);
+    this->m_main_widget->hide();
+    this->m_login_widget->show();
 }
 
 void CentralWidget::showLoading()

@@ -30,7 +30,8 @@
 #ifndef __CENTRAL_WIDGET_H__
 #define __CENTRAL_WIDGET_H__
 
-#include <QStackedWidget>
+#include <QVBoxLayout>
+#include <QFrame>
 
 #include <ui_loading_dialog.h>
 
@@ -39,7 +40,7 @@ class MainWidget;
 class MainWindow;
 
 
-class CentralWidget : public QStackedWidget
+class CentralWidget : public QFrame
 {
     Q_OBJECT
 
@@ -60,6 +61,7 @@ class CentralWidget : public QStackedWidget
         void showLoginWidget();
         void showMainWidget();
 
+        QVBoxLayout *m_layout;
         MainWindow *m_main_window;
         LoginWidget *m_login_widget;
         MainWidget *m_main_widget;
