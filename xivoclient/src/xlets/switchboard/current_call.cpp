@@ -188,6 +188,7 @@ void CurrentCall::call()
     m_requested_action = CALL;
     signal_relayer->relayNumberSelectionRequested();
     this->m_current_call_widget->btn_call->setShortcut(QString());
+    this->callingMode();
 }
 
 void CurrentCall::hangup()
@@ -228,6 +229,8 @@ void CurrentCall::cancelTransfer()
 
 void CurrentCall::readyToAnswerMode(bool has_incoming_calls)
 {
+    qDebug() << Q_FUNC_INFO;
+
     if (has_incoming_calls) {
         this->ringingMode();
     } else {
@@ -235,8 +238,19 @@ void CurrentCall::readyToAnswerMode(bool has_incoming_calls)
     }
 }
 
+void CurrentCall::callingMode()
+{
+    qDebug() << Q_FUNC_INFO;
+
+    this->resetButtons();
+
+    this->setHangupButton();
+}
+
 void CurrentCall::noCallsMode()
 {
+    qDebug() << Q_FUNC_INFO;
+
     this->resetButtons();
 
     this->setCallButton();
@@ -244,6 +258,8 @@ void CurrentCall::noCallsMode()
 
 void CurrentCall::ringingMode()
 {
+    qDebug() << Q_FUNC_INFO;
+
     this->resetButtons();
 
     this->setAnswerButton();
@@ -251,6 +267,8 @@ void CurrentCall::ringingMode()
 
 void CurrentCall::answeringMode()
 {
+    qDebug() << Q_FUNC_INFO;
+
     this->resetButtons();
 
     this->setAttendedTransferButton();
@@ -261,6 +279,8 @@ void CurrentCall::answeringMode()
 
 void CurrentCall::transferRingingMode()
 {
+    qDebug() << Q_FUNC_INFO;
+
     this->resetButtons();
 
     this->setCancelTransferButton();
@@ -268,6 +288,8 @@ void CurrentCall::transferRingingMode()
 
 void CurrentCall::transferAnsweredMode()
 {
+    qDebug() << Q_FUNC_INFO;
+
     this->resetButtons();
 
     this->setCompleteTransferButton();
